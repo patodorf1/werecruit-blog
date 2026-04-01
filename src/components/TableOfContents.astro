@@ -1,0 +1,55 @@
+---
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+const filteredHeadings = headings.filter(h => h.depth <= 3);
+---
+
+{filteredHeadings.length > 0 && (
+  <aside class="hidden xl:block" id="toc-sidebar">
+    <div class="sticky top-28">
+      <p class="text-xs font-bold uppercase tracking-widest text-wr-muted mb-4">On this page</p>
+      <nav class="flex flex-col gap-0.5">
+        {filteredHeadings.map(heading => (
+          <a
+            href={`#${heading.slug}`}
+            class:list={[
+              'toc-link text-sm py-1.5 border-l-2 transition-all duration-200 hover:text-wr-dark hover:border-wr-teal',
+              heading.depth === 2 ? 'pl-4 text-wr-muted border-wr-dark/10 font-medium' : 'pl-7 text-wr-muted/70 border-transparent text-xs',
+            ]}
+            data-heading={heading.slug}
+          >
+            {heading.text}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </aside>
+)}
+
+<script>
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const headings = document.querySelectorAll('article h2[id], article h3[id]');
+
+  if (tocLinks.length > 0 && headings.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(link => {
+              link.classList.remove('!text-wr-dark', '!border-wr-teal');
+              if (link.getAttribute('data-heading') === entry.target.id) {
+                link.classList.add('!text-wr-dark', '!border-wr-teal');
+              }
+            });
+          }
+        });
+      },
+      { rootMargin: '-80px 0px -60% 0px', threshold: 0.1 }
+    );
+
+    headings.forEach(heading => observer.observe(heading));
+  }
+</script>

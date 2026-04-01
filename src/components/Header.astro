@@ -1,0 +1,111 @@
+---
+const currentPath = Astro.url.pathname;
+const isActive = (path: string) => currentPath.startsWith(path);
+
+const navLinks = [
+  { label: 'Staff Augmentation', href: 'https://werecruit.it/staff-augmentation' },
+  { label: 'IT Recruiting', href: 'https://werecruit.it/it-recruiting' },
+  { label: 'Candidates', href: 'https://werecruit.it/candidates' },
+  { label: 'Blog', href: '/blog' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 bg-white">
+  <nav id="main-nav" class="flex items-center justify-between w-full max-w-content bg-white rounded-[14px] px-6 py-3 shadow-sm border border-gray-100 transition-all duration-300">
+    <!-- Logo -->
+    <a href="https://werecruit.it" class="flex items-center gap-1 group">
+      <span class="text-wr-dark font-medium text-xl tracking-tight">
+        we recruit<span class="inline-flex items-center justify-center w-6 h-6 bg-wr-dark text-white text-xs font-bold rounded ml-0.5 relative -top-[1px]">.it</span>
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={[
+            'text-wr-dark font-bold text-[15px] rounded-nav px-3 py-1.5 transition-colors duration-200',
+            link.label === 'Blog' && isActive('/blog')
+              ? 'bg-wr-teal/15 text-wr-dark'
+              : 'hover:bg-wr-dark/5',
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button
+      id="mobile-menu-toggle"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="Toggle menu"
+    >
+      <span class="w-6 h-0.5 bg-wr-dark rounded-full transition-transform" id="bar1"></span>
+      <span class="w-6 h-0.5 bg-wr-dark rounded-full transition-opacity" id="bar2"></span>
+      <span class="w-6 h-0.5 bg-wr-dark rounded-full transition-transform" id="bar3"></span>
+    </button>
+  </nav>
+
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-white/95 backdrop-blur-lg flex flex-col items-center justify-center gap-6 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden">
+  {navLinks.map(link => (
+    <a
+      href={link.href}
+      class="text-wr-dark font-bold text-2xl hover:text-wr-teal transition-colors"
+    >
+      {link.label}
+    </a>
+  ))}
+</div>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+  let open = false;
+
+  // Scroll glass effect
+  const nav = document.getElementById('main-nav');
+  const header = nav?.closest('header') as HTMLElement | null;
+
+  function updateNavScroll() {
+    if (!nav || !header) return;
+    if (window.scrollY > 20) {
+      nav.style.backgroundColor = 'rgba(248, 248, 247, 0.6)';
+      nav.style.backdropFilter = 'blur(12px)';
+      nav.style.webkitBackdropFilter = 'blur(12px)';
+      header.style.backgroundColor = 'transparent';
+    } else {
+      nav.style.backgroundColor = '';
+      nav.style.backdropFilter = '';
+      nav.style.webkitBackdropFilter = '';
+      header.style.backgroundColor = '';
+    }
+  }
+
+  window.addEventListener('scroll', updateNavScroll, { passive: true });
+  updateNavScroll();
+
+  toggle?.addEventListener('click', () => {
+    open = !open;
+    if (open) {
+      menu?.classList.remove('opacity-0', 'pointer-events-none');
+      menu?.classList.add('opacity-100', 'pointer-events-auto');
+      bar1?.classList.add('rotate-45', 'translate-y-[4px]');
+      bar2?.classList.add('opacity-0');
+      bar3?.classList.add('-rotate-45', '-translate-y-[4px]');
+    } else {
+      menu?.classList.add('opacity-0', 'pointer-events-none');
+      menu?.classList.remove('opacity-100', 'pointer-events-auto');
+      bar1?.classList.remove('rotate-45', 'translate-y-[4px]');
+      bar2?.classList.remove('opacity-0');
+      bar3?.classList.remove('-rotate-45', '-translate-y-[4px]');
+    }
+  });
+</script>

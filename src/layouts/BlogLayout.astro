@@ -1,0 +1,209 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { title, description = 'Insights on nearshore IT staffing, recruiting, and team building from We Recruit IT.', image } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = image || '/blog/images/og-default.jpg';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="https://werecruit.it/favicon.ico" />
+
+    <!-- SEO -->
+    <title>{title} | We Recruit IT Blog</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="We Recruit IT" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="We Recruit IT Blog" href="/blog/rss.xml" />
+  </head>
+  <body class="font-sans text-wr-dark bg-white antialiased">
+    <Header />
+    <main class="pt-24 min-h-screen">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  /* Scrollbar */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(78, 213, 216, 0.25);
+    color: #132738;
+  }
+
+  /* Prose styles for blog content */
+  .prose h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: #132738;
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+    line-height: 1.2;
+  }
+
+  .prose h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #132738;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+    line-height: 1.3;
+  }
+
+  .prose p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: #132738;
+    margin-bottom: 1.5em;
+  }
+
+  .prose a {
+    color: #3BBFC2;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+
+  .prose a:hover {
+    color: #132738;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1.5em;
+    padding-left: 1.5em;
+  }
+
+  .prose li {
+    font-size: 17px;
+    line-height: 1.75;
+    margin-bottom: 0.5em;
+    color: #132738;
+  }
+
+  .prose ul li::marker {
+    color: #4ED5D8;
+  }
+
+  .prose ol li::marker {
+    color: #6B8299;
+    font-weight: 600;
+  }
+
+  .prose blockquote {
+    border-left: 3px solid #4ED5D8;
+    padding: 1em 1.5em;
+    margin: 2em 0;
+    background: #F2F7F9;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .prose blockquote p {
+    color: #132738;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  .prose code:not(pre code) {
+    background: #F2F7F9;
+    color: #132738;
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: 500;
+  }
+
+  .prose pre {
+    background: #132738;
+    border-radius: 12px;
+    padding: 1.5em;
+    margin: 2em 0;
+    overflow-x: auto;
+  }
+
+  .prose pre code {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .prose img {
+    border-radius: 12px;
+    margin: 2em 0;
+  }
+
+  .prose hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, #4ED5D8, #FD7B99, #FFE74C);
+    margin: 3em 0;
+    border-radius: 1px;
+  }
+
+  .prose strong {
+    font-weight: 600;
+    color: #132738;
+  }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2em 0;
+    font-size: 15px;
+  }
+
+  .prose th {
+    background: #F2F7F9;
+    text-align: left;
+    padding: 0.75em 1em;
+    font-weight: 600;
+    border-bottom: 2px solid #4ED5D8;
+  }
+
+  .prose td {
+    padding: 0.75em 1em;
+    border-bottom: 1px solid #F2F7F9;
+  }
+
+  .prose tr:hover td {
+    background: #F2F7F9;
+  }
+</style>
