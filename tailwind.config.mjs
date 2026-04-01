@@ -35,10 +35,10 @@ export default {
         'content': '1200px',
       },
       backgroundImage: {
-        'dot-pattern': 'radial-gradient(circle, #132738 1px, transparent 1px)',
+        'dot-pattern': 'radial-gradient(circle, #132738 1.5px, transparent 1.5px)',
       },
       backgroundSize: {
-        'dot-pattern': '24px 24px',
+        'dot-pattern': '47px 47px',
       },
     },
   },
