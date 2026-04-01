@@ -1,106 +1,256 @@
 ---
 import BlogLayout from '../layouts/BlogLayout.astro';
-import PostCard from '../components/PostCard.astro';
-import { getCollection } from 'astro:content';
-
-const allPosts = (await getCollection('blog'))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))].sort();
 ---
 
-<BlogLayout title="Blog" description="Insights on nearshore IT staffing, recruiting, and building distributed engineering teams across Latin America.">
+<BlogLayout title="IT Recruiting & Staff Augmentation in Latin America" description="We Recruit IT connects top Latin American tech talent with global companies. Build your remote team today.">
 
   <!-- Hero -->
-  <section class="max-w-content mx-auto px-6 pt-8 pb-16">
-    <div class="max-w-2xl">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-8 h-[3px] bg-wr-teal rounded-full"></div>
-        <span class="text-wr-muted text-small font-bold uppercase tracking-widest">Blog</span>
+  <section class="max-w-[1090px] mx-auto px-6 pt-8 pb-16 md:pt-16 md:pb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="flex flex-col gap-10 items-center lg:items-start order-2 lg:order-1">
+        <div class="flex flex-col w-full max-w-[505px] gap-6">
+          <h1 class="font-medium text-center lg:text-left text-4xl md:text-5xl lg:text-[56px] leading-[1.1] tracking-[-0.02em] text-wr-dark">
+            Unleash the potential of Latin American <span class="text-wr-teal">Tech talent</span>
+          </h1>
+          <p class="text-base text-wr-muted text-center lg:text-left leading-relaxed">
+            Connect with thoroughly vetted Latin American tech professionals who fit your technical needs and team culture!
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+          <a
+            href="https://zcal.co/t/wri/i-30min"
+            class="inline-flex items-center justify-center px-8 py-3.5 bg-wr-dark text-white font-medium text-base rounded-[10px] hover:bg-wr-dark/90 transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Get started
+          </a>
+        </div>
       </div>
-
-      <h1 class="text-h1 text-wr-dark mb-4 text-4xl md:text-h1">
-        Insights &<br />Resources
-      </h1>
-
-      <p class="text-body-lg text-wr-muted max-w-lg">
-        Practical guides on nearshore staffing, IT recruiting, and scaling engineering teams in Latin America.
-      </p>
+      <div class="order-1 lg:order-2 flex justify-center">
+        <img
+          src="https://werecruit.it/wp-content/uploads/2025/09/img-5.png"
+          alt="Latin American tech talent"
+          class="w-full h-full object-contain object-center max-w-[500px]"
+        />
+      </div>
     </div>
   </section>
 
-  <!-- Tag Filter -->
-  {allTags.length > 0 && (
-    <section class="max-w-content mx-auto px-6 pb-8">
-      <div class="flex flex-wrap gap-2">
-        <button
-          class="tag-filter active bg-wr-dark text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide transition-all duration-200"
-          data-tag="all"
-        >
-          All posts
-        </button>
-        {allTags.map(tag => (
-          <button
-            class="tag-filter bg-wr-light text-wr-muted text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide hover:bg-wr-teal/15 hover:text-wr-dark transition-all duration-200"
-            data-tag={tag}
-          >
-            {tag}
-          </button>
-        ))}
+  <!-- Services -->
+  <section class="max-w-[1090px] mx-auto px-6 py-16 md:py-24">
+    <div class="flex flex-col gap-10 lg:gap-32">
+      <div class="flex flex-col gap-4 w-full max-w-[990px] mx-auto text-center">
+        <span class="block text-base text-wr-muted">Our services</span>
+        <h2 class="font-medium text-2xl md:text-[32px] leading-tight tracking-[-0.02em] text-wr-dark">
+          Discover how we can help you grow in one of the top global technology hubs: Latin America.
+        </h2>
       </div>
-    </section>
-  )}
-
-  <!-- Posts Grid -->
-  <section class="max-w-content mx-auto px-6 pb-24">
-    <div class="grid md:grid-cols-2 gap-8" id="posts-grid">
-      {allPosts.map(post => (
-        <div class="post-item" data-tags={post.data.tags.join(',')}>
-          <PostCard
-            title={post.data.title}
-            description={post.data.description}
-            date={post.data.date}
-            tags={post.data.tags}
-            slug={post.id}
-            image={post.data.image}
-          />
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
+        <!-- Staff Augmentation Card -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end p-6 md:p-10 rounded-[20px] bg-[#FFE9EE] transition-transform duration-300 hover:-translate-y-1">
+          <div class="flex-1 mb-6 md:mb-0 md:mr-8">
+            <h3 class="font-medium text-xl md:text-2xl leading-none tracking-[-0.04em] text-wr-dark mb-4">
+              Staff augmentation
+            </h3>
+            <p class="font-normal text-base leading-normal text-wr-dark">
+              Boost your projects with top developers from Latin America. We handle payroll, hardware, onboarding, and local support so your team can focus entirely on delivery and growth.
+            </p>
+          </div>
+          <div class="flex-shrink-0">
+            <a
+              href="https://werecruit.it/staff-augmentation/"
+              class="flex items-center justify-center w-[45px] h-[45px] sm:w-[65px] sm:h-[65px] rounded-[5px] bg-white border border-gray-200 hover:scale-105 transition-transform"
+              aria-label="View Staff Augmentation"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 34 31" fill="none">
+                <path d="M0.149056 15.3099H31.4227" stroke="#132738" />
+                <path d="M17.2751 1.1626L31.7951 15.6825L18.0198 29.4578" stroke="#132738" />
+              </svg>
+            </a>
+          </div>
         </div>
-      ))}
-    </div>
-
-    {allPosts.length === 0 && (
-      <div class="text-center py-24">
-        <p class="text-wr-muted text-body-lg">No posts yet. Check back soon!</p>
+        <!-- Direct Hiring Card -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end p-6 md:p-10 rounded-[20px] bg-[#FFF8D6] transition-transform duration-300 hover:-translate-y-1">
+          <div class="flex-1 mb-6 md:mb-0 md:mr-8">
+            <h3 class="font-medium text-xl md:text-2xl leading-none tracking-[-0.04em] text-wr-dark mb-4">
+              Direct Hiring
+            </h3>
+            <p class="font-normal text-base leading-normal text-wr-dark">
+              Success-based model: you only pay upon hire. Backed by a solid 1-year guarantee, ensuring stability, continuity, and the long-term strength of your team.
+            </p>
+          </div>
+          <div class="flex-shrink-0">
+            <a
+              href="https://werecruit.it/it-recruiting/"
+              class="flex items-center justify-center w-[45px] h-[45px] sm:w-[65px] sm:h-[65px] rounded-[5px] bg-white border border-gray-200 hover:scale-105 transition-transform"
+              aria-label="View IT Recruiting"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 34 31" fill="none">
+                <path d="M0.149056 15.3099H31.4227" stroke="#132738" />
+                <path d="M17.2751 1.1626L31.7951 15.6825L18.0198 29.4578" stroke="#132738" />
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
-    )}
+    </div>
+  </section>
+
+  <!-- Trusted By Banner -->
+  <section class="w-full bg-wr-dark py-16 md:py-20 -mx-6 px-6" style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); width: 100vw;">
+    <div class="max-w-[1090px] mx-auto text-center">
+      <h2 class="font-medium text-2xl md:text-[32px] leading-tight tracking-[-0.02em] text-white mb-10 md:mb-14">
+        Trusted by leading brands and startups
+      </h2>
+      <div class="relative overflow-hidden">
+        <div class="absolute top-0 left-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-wr-dark to-transparent z-10"></div>
+        <div class="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-wr-dark to-transparent z-10"></div>
+        <div class="flex animate-scroll gap-8 items-center" style="width: max-content;">
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-2.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-3.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-5.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-4.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-9.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-1.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/claro2.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/Globant.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/Naranja.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/Nestle.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/PWC.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/Tech-Mahindra.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <!-- Duplicate for seamless loop -->
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-2.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-3.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-5.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-4.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-9.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/09/Logo-frame-1.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/claro2.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/Globant.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/Naranja.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/Nestle.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/PWC.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+          <img src="https://werecruit.it/wp-content/uploads/2025/10/Tech-Mahindra.png" alt="" class="h-[80px] w-auto max-w-[100px] object-contain" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Do It -->
+  <section class="max-w-[1090px] mx-auto px-6 py-16 md:py-24">
+    <div class="flex flex-col gap-16">
+      <div class="flex flex-col gap-4 w-full text-center">
+        <span class="block text-base text-wr-muted">How do we do it?</span>
+        <h2 class="font-medium text-2xl md:text-[32px] leading-tight tracking-[-0.02em] text-wr-dark">
+          We combine tools, data, and expertise to find top candidates.
+        </h2>
+      </div>
+      <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+        <div class="w-full lg:w-1/2">
+          <div class="lg:max-w-md w-full lg:mr-auto flex flex-col gap-6">
+            <div>
+              <p class="text-wr-dark"><strong>Global mindset, local expertise</strong></p>
+              <p class="text-wr-muted text-base leading-relaxed">We recruit across Latin America with deep market knowledge, making our searches more precise and globally aligned.</p>
+            </div>
+            <div>
+              <p class="text-wr-dark"><strong>Proprietary tools & continuous improvement</strong></p>
+              <p class="text-wr-muted text-base leading-relaxed">We develop search and evaluation methodologies to increase speed and accuracy.</p>
+            </div>
+            <div>
+              <p class="text-wr-dark"><strong>Better matches, guaranteed</strong></p>
+              <p class="text-wr-muted text-base leading-relaxed">We align technical skills, culture and expectations to ensure long-term fit and reduce hiring risk.</p>
+            </div>
+          </div>
+        </div>
+        <div class="w-full lg:w-1/2 flex items-center justify-center">
+          <div class="relative w-full max-w-[320px] sm:max-w-[450px] aspect-square">
+            <img
+              src="https://werecruit.it/wp-content/uploads/2025/09/Frame-1410087959-1.png"
+              alt="How we work"
+              class="w-full h-full object-contain object-center"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="w-full bg-[#F2F7F9] py-16 md:py-24 -mx-6 px-6" style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); width: 100vw;">
+    <div class="relative">
+      <!-- Dot pattern -->
+      <div class="absolute left-1/2 -translate-x-1/2 top-0 w-full max-w-[1311px] h-[234px]" style="background-image: radial-gradient(#132738 1.5px, transparent 1.5px); background-size: 47px 47px;"></div>
+      <div class="flex flex-col gap-16 max-w-[860px] mx-auto text-center bg-[#F2F7F9] relative z-10 pt-8">
+        <div class="flex flex-col gap-4 w-full mx-auto text-center">
+          <span class="block text-base text-wr-muted">About We Recruit IT</span>
+          <h2 class="font-medium text-4xl md:text-5xl lg:text-[56px] leading-[1.1] tracking-[-0.02em] text-wr-dark">
+            We connect people.
+          </h2>
+        </div>
+        <p class="text-xl md:text-2xl leading-relaxed text-[#a6a49b]">
+          For more than a decade, we've specialized in understanding LATAM's talent landscape and creating reliable, long-term connections between companies and exceptional engineers.
+        </p>
+      </div>
+      <!-- Team carousel -->
+      <div class="max-w-[930px] mx-auto mt-20 relative overflow-hidden">
+        <div class="absolute top-0 left-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#F2F7F9] to-transparent z-10"></div>
+        <div class="absolute top-0 right-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#F2F7F9] to-transparent z-10"></div>
+        <div class="flex animate-scroll-slow gap-6 items-center" style="width: max-content;">
+          <img src="https://werecruit.it/wp-content/uploads/2025/08/Rectangle-51.png" alt="" class="w-16 h-16 md:w-[72px] md:h-[72px] object-cover rounded-xl" />
+          <div class="w-16 h-16 md:w-[72px] md:h-[72px] rounded-xl flex items-center justify-center bg-[#FFE74C] flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><path d="M10.5 10.5L8.5 13L10.5 15.5" stroke="#132738" /><path d="M14.5 10.5L16.5 13L14.5 15.5" stroke="#132738" /><path d="M20.5 20C21.0304 20 21.5391 19.7893 21.9142 19.4142C22.2893 19.0391 22.5 18.5304 22.5 18V8C22.5 7.46957 22.2893 6.96086 21.9142 6.58579C21.5391 6.21071 21.0304 6 20.5 6H12.6C12.2655 6.00328 11.9355 5.92261 11.6403 5.76538C11.3451 5.60815 11.094 5.37938 10.91 5.1L10.1 3.9C9.91789 3.62347 9.66997 3.39648 9.3785 3.2394C9.08702 3.08231 8.76111 3.00005 8.43 3H4.5C3.96957 3 3.46086 3.21071 3.08579 3.58579C2.71071 3.96086 2.5 4.46957 2.5 5V18C2.5 18.5304 2.71071 19.0391 3.08579 19.4142C3.46086 19.7893 3.96957 20 4.5 20H20.5Z" stroke="#132738" /></svg>
+          </div>
+          <img src="https://werecruit.it/wp-content/uploads/2025/08/Rectangle-52.png" alt="" class="w-16 h-16 md:w-[72px] md:h-[72px] object-cover rounded-xl" />
+          <div class="w-16 h-16 md:w-[72px] md:h-[72px] rounded-xl flex items-center justify-center bg-[#FD7B99] flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none"><path d="M12.5 8C17.4706 8 21.5 6.65685 21.5 5C21.5 3.34315 17.4706 2 12.5 2C7.52944 2 3.5 3.34315 3.5 5C3.5 6.65685 7.52944 8 12.5 8Z" stroke="#132738" /><path d="M3.5 5V19C3.5 19.7956 4.44821 20.5587 6.13604 21.1213C7.82387 21.6839 10.1131 22 12.5 22C14.8869 22 17.1761 21.6839 18.864 21.1213C20.5518 20.5587 21.5 19.7956 21.5 19V5" stroke="#132738" /><path d="M3.5 12C3.5 12.7956 4.44821 13.5587 6.13604 14.1213C7.82387 14.6839 10.1131 15 12.5 15C14.8869 15 17.1761 14.6839 18.864 14.1213C20.5518 13.5587 21.5 12.7956 21.5 12" stroke="#132738" /></svg>
+          </div>
+          <img src="https://werecruit.it/wp-content/uploads/2025/08/Rectangle-51.png" alt="" class="w-16 h-16 md:w-[72px] md:h-[72px] object-cover rounded-xl" />
+          <div class="w-16 h-16 md:w-[72px] md:h-[72px] rounded-xl flex items-center justify-center bg-[#4ED5D8] flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="#132738"/><circle cx="9" cy="7" r="4" stroke="#132738"/><path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="#132738"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="#132738"/></svg>
+          </div>
+          <img src="https://werecruit.it/wp-content/uploads/2025/08/Rectangle-52.png" alt="" class="w-16 h-16 md:w-[72px] md:h-[72px] object-cover rounded-xl" />
+          <div class="w-16 h-16 md:w-[72px] md:h-[72px] rounded-xl flex items-center justify-center bg-[#FFE74C] flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="#132738"/></svg>
+          </div>
+          <img src="https://werecruit.it/wp-content/uploads/2025/08/Rectangle-51.png" alt="" class="w-16 h-16 md:w-[72px] md:h-[72px] object-cover rounded-xl" />
+          <div class="w-16 h-16 md:w-[72px] md:h-[72px] rounded-xl flex items-center justify-center bg-[#FD7B99] flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#132738"/><path d="M2 17l10 5 10-5" stroke="#132738"/><path d="M2 12l10 5 10-5" stroke="#132738"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="max-w-[1090px] mx-auto px-6 py-16 md:py-24 text-center">
+    <div class="max-w-2xl mx-auto flex flex-col items-center gap-6">
+      <span class="block text-base text-wr-muted">Ready to build your team?</span>
+      <h2 class="font-medium text-3xl md:text-[42px] leading-tight tracking-[-0.02em] text-wr-dark">
+        Let's connect and find the perfect fit for your company.
+      </h2>
+      <a
+        href="https://zcal.co/t/wri/i-30min"
+        class="inline-flex items-center justify-center px-8 py-3.5 bg-wr-dark text-white font-medium text-base rounded-[10px] hover:bg-wr-dark/90 transition-colors mt-4"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Schedule a call
+      </a>
+    </div>
   </section>
 
 </BlogLayout>
 
-<script>
-  const buttons = document.querySelectorAll('.tag-filter');
-  const items = document.querySelectorAll('.post-item');
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tag = btn.getAttribute('data-tag');
-
-      buttons.forEach(b => {
-        b.classList.remove('active', 'bg-wr-dark', 'text-white');
-        b.classList.add('bg-wr-light', 'text-wr-muted');
-      });
-      btn.classList.add('active', 'bg-wr-dark', 'text-white');
-      btn.classList.remove('bg-wr-light', 'text-wr-muted');
-
-      items.forEach(item => {
-        const itemTags = item.getAttribute('data-tags')?.split(',') || [];
-        if (tag === 'all' || itemTags.includes(tag)) {
-          (item as HTMLElement).style.display = '';
-        } else {
-          (item as HTMLElement).style.display = 'none';
-        }
-      });
-    });
-  });
-</script>
+<style>
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-scroll {
+    animation: scroll 40s linear infinite;
+  }
+  .animate-scroll-slow {
+    animation: scroll 30s linear infinite;
+  }
+</style>

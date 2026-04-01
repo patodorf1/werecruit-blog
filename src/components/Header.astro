@@ -6,7 +6,7 @@ const navLinks = [
   { label: 'Staff Augmentation', href: 'https://werecruit.it/staff-augmentation' },
   { label: 'IT Recruiting', href: 'https://werecruit.it/it-recruiting' },
   { label: 'Candidates', href: 'https://werecruit.it/candidates' },
-  { label: 'Blog', href: '/' },
+  { label: 'Blog', href: '/blog' },
 ];
 ---
 
@@ -26,7 +26,7 @@ const navLinks = [
           href={link.href}
           class:list={[
             'text-wr-dark font-bold text-[15px] rounded-nav px-3 py-1.5 transition-colors duration-200',
-            link.label === 'Blog' && (currentPath === '/' || isActive('/'))
+            link.label === 'Blog' && isActive('/blog')
               ? 'bg-wr-teal/15 text-wr-dark'
               : 'hover:bg-wr-dark/5',
           ]}

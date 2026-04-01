@@ -1,0 +1,106 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))].sort();
+---
+
+<BlogLayout title="Blog" description="Insights on nearshore IT staffing, recruiting, and building distributed engineering teams across Latin America.">
+
+  <!-- Hero -->
+  <section class="max-w-content mx-auto px-6 pt-8 pb-16">
+    <div class="max-w-2xl">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-8 h-[3px] bg-wr-teal rounded-full"></div>
+        <span class="text-wr-muted text-small font-bold uppercase tracking-widest">Blog</span>
+      </div>
+
+      <h1 class="text-h1 text-wr-dark mb-4 text-4xl md:text-h1">
+        Insights &<br />Resources
+      </h1>
+
+      <p class="text-body-lg text-wr-muted max-w-lg">
+        Practical guides on nearshore staffing, IT recruiting, and scaling engineering teams in Latin America.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tag Filter -->
+  {allTags.length > 0 && (
+    <section class="max-w-content mx-auto px-6 pb-8">
+      <div class="flex flex-wrap gap-2">
+        <button
+          class="tag-filter active bg-wr-dark text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide transition-all duration-200"
+          data-tag="all"
+        >
+          All posts
+        </button>
+        {allTags.map(tag => (
+          <button
+            class="tag-filter bg-wr-light text-wr-muted text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wide hover:bg-wr-teal/15 hover:text-wr-dark transition-all duration-200"
+            data-tag={tag}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Posts Grid -->
+  <section class="max-w-content mx-auto px-6 pb-24">
+    <div class="grid md:grid-cols-2 gap-8" id="posts-grid">
+      {allPosts.map(post => (
+        <div class="post-item" data-tags={post.data.tags.join(',')}>
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.date}
+            tags={post.data.tags}
+            slug={post.id}
+            image={post.data.image}
+          />
+        </div>
+      ))}
+    </div>
+
+    {allPosts.length === 0 && (
+      <div class="text-center py-24">
+        <p class="text-wr-muted text-body-lg">No posts yet. Check back soon!</p>
+      </div>
+    )}
+  </section>
+
+</BlogLayout>
+
+<script>
+  const buttons = document.querySelectorAll('.tag-filter');
+  const items = document.querySelectorAll('.post-item');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tag = btn.getAttribute('data-tag');
+
+      buttons.forEach(b => {
+        b.classList.remove('active', 'bg-wr-dark', 'text-white');
+        b.classList.add('bg-wr-light', 'text-wr-muted');
+      });
+      btn.classList.add('active', 'bg-wr-dark', 'text-white');
+      btn.classList.remove('bg-wr-light', 'text-wr-muted');
+
+      items.forEach(item => {
+        const itemTags = item.getAttribute('data-tags')?.split(',') || [];
+        if (tag === 'all' || itemTags.includes(tag)) {
+          (item as HTMLElement).style.display = '';
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
