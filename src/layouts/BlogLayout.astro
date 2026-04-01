@@ -10,7 +10,7 @@ interface Props {
 
 const { title, description = 'Insights on nearshore IT staffing, recruiting, and team building from We Recruit IT.', image } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = image || '/blog/images/og-default.jpg';
+const ogImage = image || '/images/og-default.jpg';
 ---
 
 <!doctype html>
@@ -45,7 +45,7 @@ const ogImage = image || '/blog/images/og-default.jpg';
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="We Recruit IT Blog" href="/blog/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="We Recruit IT Blog" href="/rss.xml" />
   </head>
   <body class="font-sans text-wr-dark bg-white antialiased">
     <Header />
