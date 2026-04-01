@@ -1,0 +1,22 @@
+# We Recruit IT
+
+> Nearshore IT staffing and recruiting company connecting Latin American tech talent with global companies.
+
+We Recruit IT specializes in two core services: Staff Augmentation (embedded LATAM engineers with payroll, hardware, and onboarding handled) and Direct Hiring (success-based recruiting with a 1-year guarantee). With over a decade of experience, we help companies build distributed engineering teams across Latin America.
+
+## Blog
+
+Our blog covers insights on nearshore IT staffing, recruiting strategies, and building distributed engineering teams.
+
+- [Why Nearshore Staff Augmentation is the Smart Choice for US Companies](https://blog.teamswerecruit.com/blog/nearshore-staff-augmentation/): How nearshore staff augmentation in Latin America gives US companies access to elite engineering talent, timezone alignment, and cost advantages.
+- [Staff Augmentation vs. Outsourcing: Which Model Fits Your Team?](https://blog.teamswerecruit.com/blog/staff-augmentation-vs-outsourcing/): A practical comparison of staff augmentation and project outsourcing for engineering leaders.
+
+## Links
+
+- Website: https://werecruit.it
+- Staff Augmentation: https://werecruit.it/staff-augmentation
+- IT Recruiting: https://werecruit.it/it-recruiting
+- Candidates: https://werecruit.it/candidates
+- Blog: https://blog.teamswerecruit.com/blog
+- RSS: https://blog.teamswerecruit.com/rss.xml
+- Schedule a call: https://zcal.co/t/wri/i-30min
